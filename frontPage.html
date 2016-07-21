@@ -3,57 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <title>class scheduling form</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+
 </head>
 <body>
-<form>
+<div class="container-fluid top-logo">
+    <img class="banner-img" src="imgs/base.png">
+</div>
+<h1><b>Training Class Scheduling Form</b></h1>
+<form id="myForm">
     <fieldset>
         <legend>Class Selection</legend>
         <p>
             <label>Available classes</label>
+        <span class="dropdown" style="border:  2px solid darkblue;">
             <select id = "myList">
                 <option value = "1">one</option>
                 <option value = "2">two</option>
                 <option value = "3">three</option>
                 <option value = "4">four</option>
             </select>
+        </span>
         </p>
     </fieldset>
     <fieldset>
         <legend>Course Selection</legend>
         <p>
             <label>Available courses</label>
+        <span class="dropdown" style="border: 2px solid darkblue;">
             <select id = "myList2">
                 <option value = "1">one</option>
                 <option value = "2">two</option>
                 <option value = "3">three</option>
                 <option value = "4">four</option>
             </select>
+        </span>
         </p>
     </fieldset>
     <fieldset>
         <legend>Classroom Selection</legend>
         <p>
             <label>Available classrooms</label>
+            <span class="dropdown" style="border: 2px solid darkblue;">
             <select id = "myList3">
                 <option value = "1">one</option>
                 <option value = "2">two</option>
                 <option value = "3">three</option>
                 <option value = "4">four</option>
             </select>
+                </span>
         </p>
     </fieldset>
     <fieldset>
         <legend>Trainer Selection</legend>
         <p>
             <label>Available trainers</label>
+            <span class="dropdown" style="border: 2px solid darkblue;">
             <select id = "myList4">
                 <option value = "1">one</option>
                 <option value = "2">two</option>
                 <option value = "3">three</option>
                 <option value = "4">four</option>
             </select>
+                </span>
         </p>
     </fieldset>
+    <fieldset>
+        <legend>Calendar</legend>
+        <p>
+            <label>Pick class start date and time</label>
+            <span style="border: 2px solid blue;">
+                <input id ="calendar1" type="datetime-local" name="datetime">
+            </span>
+                <label>Pick class end date and time</label>
+            <span  style="border: 2px solid blue;">
+                <input id ="calendar2" type="datetime-local" name="datetime">
+            </span>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Class Type</legend>
+        <p>
+            <label>Available class types</label>
+            <span class="dropdown" style="border: 2px solid blue;">
+            <select id = "myList5">
+                <option value = "1">one</option>
+                <option value = "2">two</option>
+                <option value = "3">three</option>
+                <option value = "4">four</option>
+            </select>
+                </span>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Revenue Type</legend>
+        <p>
+            <label>Available revenue types</label>
+            <span class="dropdown" style="border: 2px solid blue;">
+            <select id = "myList6">
+                <option value = "1">one</option>
+                <option value = "2">two</option>
+                <option value = "3">three</option>
+                <option value = "4">four</option>
+            </select>
+                </span>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Notes</legend>
+        <p>
+        <form>
+        <div  style="border: 2px solid blue;">
+        <textarea id="notes" rows="5" cols="45" maxlength="300" placeholder="maximum of 300 characters"></textarea>
+          </div>
+        </form>
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>Trainer Acceptance</legend>
+        <p>
+            <span class="dropdown" style="border: 2px solid blue;">
+            <select id = "myList7">
+                <option value = "1">Accept</option>
+                <option value = "2">Decline</option>
+            </select>
+                </span>
+        </p>
+    </fieldset>
+    <button class="button" style="vertical-align:middle" onclick="myFunction()"><span>Submit</span></button>
 </form>
+
+
+<script type="text/javascript">
+    function myFunction() {
+
+        var classScheduleInput = {};
+
+        classScheduleInput.classSelection = document.getElementById('myList').value;
+        classScheduleInput.courseSelection = document.getElementById("myList2").value;
+        classScheduleInput.classroomSelection = document.getElementById("myList3").value;
+        classScheduleInput.trainerSelection = document.getElementById("myList4").value;
+        classScheduleInput.beginningDate = document.getElementById("calendar1").value;
+        classScheduleInput.endingDate = document.getElementById("calendar2").value;
+        classScheduleInput.classType = document.getElementById("myList5").value;
+        classScheduleInput.revenueType = document.getElementById("myList6").value;
+        classScheduleInput.trainerNotes = document.getElementById("notes").value;
+        classScheduleInput.trainerAcceptance = document.getElementById("myList7").value;
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200)
+            {
+                console.log(request.responseText);
+            }
+        };
+        request.open("POST", "/classScheduler", true);
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.send(JSON.stringify(classScheduleInput));
+
+
+
+    }
+</script>
 </body>
 </html>
