@@ -72,11 +72,11 @@
         <legend>Calendar</legend>
         <p>
             <label>Pick class start date and time</label>
-            <span style="border: 2px solid blue;">
+            <span class="startDate" style="border: 2px solid darkblue;">
                 <input id ="calendar1" type="datetime-local" name="datetime">
             </span>
                 <label>Pick class end date and time</label>
-            <span  style="border: 2px solid blue;">
+            <span class="endDate" style="border: 2px solid darkblue;">
                 <input id ="calendar2" type="datetime-local" name="datetime">
             </span>
         </p>
@@ -85,7 +85,7 @@
         <legend>Class Type</legend>
         <p>
             <label>Available class types</label>
-            <span class="dropdown" style="border: 2px solid blue;">
+            <span class="dropdown" style="border: 2px solid darkblue;">
             <select id = "myList5">
                 <option value = "1">one</option>
                 <option value = "2">two</option>
@@ -99,7 +99,7 @@
         <legend>Revenue Type</legend>
         <p>
             <label>Available revenue types</label>
-            <span class="dropdown" style="border: 2px solid blue;">
+            <span class="dropdown" style="border: 2px solid darkblue;">
             <select id = "myList6">
                 <option value = "1">one</option>
                 <option value = "2">two</option>
@@ -113,7 +113,7 @@
         <legend>Notes</legend>
         <p>
         <form>
-        <div  style="border: 2px solid blue;">
+        <div class="Notes1"  style="border: 2px solid darkblue;">
         <textarea id="notes" rows="5" cols="45" maxlength="300" placeholder="maximum of 300 characters"></textarea>
           </div>
         </form>
@@ -122,15 +122,38 @@
     <fieldset>
         <legend>Trainer Acceptance</legend>
         <p>
-            <span class="dropdown" style="border: 2px solid blue;">
+            <span class="dropdown" style="border: 2px solid darkblue;">
             <select id = "myList7">
                 <option value = "1">Accept</option>
                 <option value = "2">Decline</option>
             </select>
                 </span>
         </p>
+    </fieldset><br><br>
+    <button class="button" style="vertical-align:middle" onclick="myFunction()"><span>Submit</span></button><br><br>
+    <fieldset>
+        <legend>Registration status</legend>
+        <p>
+            <span class="dropdown" style="border: 2px solid darkblue;">
+            <select id = "myList8">
+                <option value = "1">Accepted</option>
+                <option value = "2">In progess</option>
+                <option value = "3">Completed</option>
+            </select>
+                </span>
+        </p>
     </fieldset>
-    <button class="button" style="vertical-align:middle" onclick="myFunction()"><span>Submit</span></button>
+    <fieldset>
+        <legend>Billing status</legend>
+        <p>
+            <span class="dropdown" style="border: 2px solid darkblue;">
+            <select id = "myList9">
+                <option value = "1">Unpaid</option>
+                <option value = "2">Paid</option>
+            </select>
+                </span>
+        </p>
+    </fieldset>
 </form>
 
 
@@ -160,9 +183,6 @@
         request.open("POST", "/classScheduler", true);
         request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         request.send(JSON.stringify(classScheduleInput));
-
-
-
     }
 </script>
 </body>
